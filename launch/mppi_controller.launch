@@ -1,0 +1,6 @@
+<launch>
+  <param name="control_parameters_yaml_file" value="$(find mppi_car)/config/control_config.yaml" />
+  <param name="visualizing_parameters_yaml_file" value="$(find mppi_car)/config/visual_config.yaml" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mppi_car)/config/mppi_viz.rviz" />
+  <node name="mppi_controller" pkg="mppi_car" type="mppi_controller" output="screen" />
+</launch>
