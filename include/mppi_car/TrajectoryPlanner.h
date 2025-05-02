@@ -14,21 +14,23 @@ class TrajectoryPlanner {
         ~TrajectoryPlanner();
 
         std::vector<std::vector<double>> get_global_trajectory() const;
-
         std::vector<std::vector<double>> get_local_trajectory(std::vector<double> now_state);
+
+
 
     private:
         ros::NodeHandle& nh;
         std::shared_ptr<DatabaseConfig>& databaseconfig;
 
         std::vector<double> circle_trajectory_parameters;
+        int N;
+        int previous_index;
+
 
         std::vector<std::vector<double>> global_trajectory;
         std::vector<std::vector<double>> local_trajectory;
 
-        int N;
-        
-        int previous_index;
+
 
 
         void generator_global_trajectory();
