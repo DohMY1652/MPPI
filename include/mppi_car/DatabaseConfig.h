@@ -24,11 +24,10 @@ class DatabaseConfig {
 
     std::vector<double> get_distribution_parameters() const;
     std::vector<double> get_car_initial_state() const;
-    std::vector<double> get_goals() const;
     std::vector<double> get_weights() const;
+    std::vector<double> get_circle_trajectory_parameters() const;
 
     
-
    private:
     YAML::Node config;
     
@@ -40,11 +39,10 @@ class DatabaseConfig {
 
     double L;
 
+    std::vector<double> circle_trajectory_parameters;
+
     std::vector<double> distribution_parameters;
-
     std::vector<double> car_initial_state;
-
-    std::vector<double> goals;
     std::vector<double> weights;
 
     double simulation_frequency;

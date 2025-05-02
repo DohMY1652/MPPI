@@ -19,12 +19,12 @@ DatabaseConfig::DatabaseConfig(const YAML::Node& config)
         car_initial_state.push_back(data.second.as<double>());
     }
 
-    for (const auto& data : config["target_state"]) {
-        goals.push_back(data.second.as<double>());
-    }
-
     for (const auto& data : config["weights"]) {
         weights.push_back(data.second.as<double>());
+    }
+
+    for (const auto& data : config["circle_trajectory"]) {
+        circle_trajectory_parameters.push_back(data.second.as<double>());
     }
 }
 
@@ -42,6 +42,5 @@ double DatabaseConfig::get_simulation_frequency() const {return simulation_frequ
 
 std::vector<double> DatabaseConfig::get_distribution_parameters() const { return distribution_parameters; }
 std::vector<double> DatabaseConfig::get_car_initial_state() const { return car_initial_state; }
-std::vector<double> DatabaseConfig::get_goals() const { return goals; }
 std::vector<double> DatabaseConfig::get_weights() const { return weights; }
-
+std::vector<double> DatabaseConfig::get_circle_trajectory_parameters() const { return circle_trajectory_parameters; }

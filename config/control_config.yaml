@@ -3,7 +3,6 @@ system_parameters:
   prediction_horizen : 30
   sampling_number : 10000
 
-
 distribution_parameters :
   mean : 0
   variance : 0.2
@@ -17,13 +16,6 @@ car_initial_state :
   initial_theta : 0
   initial_v : 0
 
-
-target_state :
-  x_goal : 20.0
-  y_goal : 20.0
-  theta_goal : 0.0
-  arrival_range : 0.2
-
 weights:
   goal : 1000.0
   tracking : 10.0
@@ -33,3 +25,12 @@ inverse_temeprature : 1
 
 simulation_parameters :
   frequency : 50
+
+
+
+circle_trajectory :
+  x_center : 0.0
+  y_center : 10.0
+  radius : 5.0
+  trajectory_length : 1000
+  lane_width : 0.2

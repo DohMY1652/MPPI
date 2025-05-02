@@ -13,50 +13,28 @@
 #include "visualization_msgs/MarkerArray.h"
 #include "tf2/LinearMath/Quaternion.h"
 
+
 class Visualizer {
     public:
-        Visualizer(ros::NodeHandle& nh, const YAML::Node& config);
+        Visualizer(ros::NodeHandle& nh, const YAML::Node& visualizing_config, const YAML::Node& control_config);
         ~Visualizer();
 
-        void publish_pose(double x, double y, double theta);
-        void publish_velocity_text(double x, double y, double velocity);
-        void publish_path(double x, double y, double velocity);
-        void publish_goal_markers(const std::vector<double>& goal);
-        void publish_lane();
-
-        void update_monitor(std::vector<double> state, std::vector<double> goals);
-
-        void update_sampled_path(std::vector<std::vector<std::vector<double>>> sampled_states);
-
-        int get_sample_number() const;
+        void publish_trajectory(const std::vector<std::vector<double>>& trajectory);
 
     private:
-        YAML::Node config;
+        ros::NodeHandle& nh;
+        YAML::Node visualizing_config;
+        YAML::Node control_config;
 
-        double lane_start_x_;
-        double lane_end_x_;
-        double lane_step_;
-        double lane_gap_;
+        ros::Publisher trajectory_pub;
+        ros::Publisher boundary_pub;
 
-        ros::Publisher pose_pub_;
-        ros::Publisher velocity_marker_pub_;
-        ros::Publisher goal_marker_pub_;
-        ros::Publisher path_pub_;
-        ros::Publisher center_line_pub_;
-        ros::Publisher lane_bounds_pub_;
-        ros::Publisher sampled_path_pub_;
-
-
-        std::vector<geometry_msgs::Point> path_points_;
-        std::vector<std_msgs::ColorRGBA> path_colors_;
-        int max_path_size_;
-        int sample_number_;
-
-        visualization_msgs::Marker center_line_;
-        visualization_msgs::Marker lane_bounds_;
-
-        void load_marker_config(const YAML::Node& config);
-
+        double traj_scale;
+        std_msgs::ColorRGBA traj_color;
+        
+        double lane_width;
+        double boundary_scale;
+        std_msgs::ColorRGBA boundary_color;
 
 };
 

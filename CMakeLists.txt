@@ -213,6 +213,7 @@ add_executable(mppi_controller
   src/Dynamics.cpp
   src/DatabaseConfig.cpp
   src/Visualizer.cpp
+  src/TrajectoryPlanner.cpp
 )
 
 target_link_libraries(mppi_controller
